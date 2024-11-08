@@ -1,16 +1,11 @@
 @include('include.header')
-<!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
-        <!--begin::Container-->
         <div class="container">
-            <!--begin::Dashboard-->
             <div class="card card-custom gutter-b ">
                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                     <div class="card-title">
                         <h3 class="card-label">
-                            {{-- {{ __('lang.add_administration_user') }} --}}
                         </h3>
                     </div>
                     <div class="card-title card-toolbar">
@@ -129,13 +124,9 @@
                     </form>
                 </div>
             </div>
-            <!--end::Dashboard-->
         </div>
-        <!--end::Container-->
     </div>
-    <!--end::Entry-->
 </div>
-<!--end::Content-->
 @include('include.footer')
 <script>
     $(document).ready(function() {

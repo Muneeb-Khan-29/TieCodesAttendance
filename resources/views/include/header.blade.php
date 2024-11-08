@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--begin::Head-->
 
 <head>
     <base href="">
     <meta charset="utf-8" />
     <title>TieCodes | Attendance</title>
     <meta name="description" content="Updates and statistics" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!--begin::Fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    <!--end::Fonts-->
-    <!--begin::Page Vendors Styles(used by this page)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />\
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />\
     <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.5') }}" rel="stylesheet"
-        type="text/css" />
-    <!--end::Page Vendors Styles-->
-    <!--begin::Global Theme Styles(used by all pages)-->
+        type="text/css" />\
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
-    <!--end::Global Theme Styles-->
-    <!--begin::Layout Themes(used by all pages)-->
-    <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/sm-logo.svg') }}" />
-    <!-- DataTables CSS -->
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet"
         type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -32,26 +22,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
 
 <body id="kt_body" class="header-fixed header-mobile-fixed page-loading">
-    <!--begin::Main-->
-    <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
-        <!--begin::Logo-->
         <a href="index.html">
             <img alt="Logo" src="assets/media/logos/logo-letter-9.png" class="max-h-30px" />
         </a>
-        <!--end::Logo-->
-        <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
             <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
                 <span></span>
             </button>
             <button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
                 <span class="svg-icon svg-icon-xl">
-                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                         height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -64,34 +46,38 @@
                                 fill="#000000" fill-rule="nonzero" />
                         </g>
                     </svg>
-                    <!--end::Svg Icon-->
                 </span>
             </button>
         </div>
-        <!--end::Toolbar-->
     </div>
-    <!--end::Header Mobile-->
     <div class="d-flex flex-column flex-root">
-        <!--begin::Page-->
         <div class="d-flex flex-row flex-column-fluid page">
-            <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-                <!--begin::Header-->
                 <div id="kt_header" class="header flex-column header-fixed">
-                    <!--begin::Top-->
                     <div class="header-top" style="background-color:#fcaf17">
-                        <!--begin::Container-->
                         <div class="container">
-                            <!--begin::Left-->
                             <div class="d-none d-lg-flex align-items-center mr-3">
-                                <!--begin::Logo-->
                                 <a href="dashboard" class="mr-20">
-                                    <h2 class="text-light">Attendance</h2>
+                                    <h2 class="text-light">
+                                        <svg width="38" height="35" viewBox="0 0 38 35" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M29.3396 7.18538C24.3126 2.50104 17.6264 3.07194 12.0909 6.78536C12.0217 6.86346 11.5921 7.08307 12.071 6.39975C22.6978 -5.11115 42.2432 10.606 31.3252 23.703C33.7695 18.5013 34.382 11.8844 29.3399 7.18549L29.3396 7.18538Z"
+                                                fill="#ffffff" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M24.8473 1.7599C7.57842 -3.34896 -7.25565 23.1232 11.9783 35C-9.60605 25.7821 0.996118 -2.21233 19.9979 0.139727C21.5486 0.329935 23.9238 1.05709 24.8472 1.75968L24.8473 1.7599Z"
+                                                fill="#ffffff" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M29.4039 18.7608C29.4039 24.4699 24.7471 29.1104 19.0137 29.1104C13.2755 29.1104 8.61914 24.4699 8.61914 18.7608C8.61914 13.0516 13.276 8.41113 19.0137 8.41113C24.7471 8.41113 29.4039 13.0516 29.4039 18.7608ZM11.3944 20.132C10.6191 21.3081 11.5277 24.2944 14.219 26.0608C16.8856 27.8271 20.3029 27.6954 21.098 26.5147C21.8732 25.3631 20.219 26.1048 17.1968 24.9921C12.2092 23.1575 12.1649 18.9513 11.3944 20.132Z"
+                                                fill="#ffffff" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M35.6625 12.1391C42.729 25.5919 23.1146 42.8663 9.4408 30.6376C7.69264 29.0859 6.92242 27.5879 5.64844 25.6408C16.2805 40.1869 39.6777 28.6953 35.4801 12.3533C35.327 11.753 35.4259 11.6994 35.6627 12.1386L35.6625 12.1391Z"
+                                                fill="#ffffff" />
+                                        </svg>
+                                        Tiecodes
+                                    </h2>
                                 </a>
-                                <!--end::Logo-->
-                                <!--begin::Tab Navs(for desktop mode)-->
                                 <ul class="header-tabs nav align-self-end font-size-lg" role="tablist">
-                                    <!--begin::Item-->
                                     <li class="nav-item">
                                         <a href="{{ url('dashboard') }}"
                                             class="nav-link dashboard_tab py-4 px-6">Home</a>
@@ -115,6 +101,12 @@
                                             class="nav-link attendance_tab py-4 px-6">Attendance</a>
                                     </li>
                                     <!--end::Item-->
+                                    <!--begin::Item-->
+                                    <li class="nav-item mr-3">
+                                        <a href="{{ url('attendance/history') }}"
+                                            class="nav-link attendance_tab py-4 px-6">Attendance History</a>
+                                    </li>
+                                    <!--end::Item-->
                                 </ul>
                                 <!--begin::Tab Navs-->
                             </div>
@@ -125,18 +117,6 @@
                         <!--begin::Topbar-->
                         <div class="topbar mr-5">
                             <!--begin::User-->
-                            {{-- <a class="topbar-item" href="{{ url('customer/profile/personal') }}">
-                                <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2">
-                                    <span
-                                        class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
-                                    <span
-                                        class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ Auth::user()->first_name }}</span>
-                                    <span class="symbol symbol-35 symbol-light-success">
-                                        <span
-                                            class="symbol-label font-size-h5 font-weight-bold">{{ substr(Auth::user()->first_name, 0, 1) }}</span>
-                                    </span>
-                                </div>
-                            </a> --}}
                             <a href="{{ url('/logout') }}" class="btn btn-light m-auto font-weight-bold"
                                 style="color: #fcaf17;">Sign Out</a>
 
