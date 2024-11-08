@@ -7,31 +7,34 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
-    public function employees(Request $request){
+    public function employees(Request $request)
+    {
         if ($request->ajax()) {
 
             $data = Employee::latest()
                 ->get();
 
-        return DataTables::of($data)->make(true);
+            return DataTables::of($data)->make(true);
+        }
+
+        return view('emp.all');
     }
 
-    return view('emp.all');
-    }
 
-
-    public function createEmp(){
+    public function createEmp()
+    {
         return view('emp.create');
     }
 
 
 
-    public function addEmp(Request $request){
-        // dd($request->all());
+    public function addEmp(Request $request)
+    {
         $existing = Employee::where('email', $request->email)->first();
 
         if ($existing) {
@@ -75,27 +78,28 @@ class EmployeeController extends Controller
             return redirect('employees')->with('success', "Employee created successfully");
         }
 
-        return redirect('create/emp')->with('error',"Something went wrong");
+        return redirect('create/emp')->with('error', "Something went wrong");
     }
 
 
-    public function editEmp($id)
+    public function editEmp($slug)
     {
-        $user = Employee::where('id', $id)->first();
+        $user = Employee::where('slug', $slug)->first();
         return view('emp.edit', compact('user'));
     }
 
 
-    public function updateEmp(Request $request){
+    public function updateEmp(Request $request)
+    {
         // dd($request->all());
-        $existing = Employee::where('email', $request->email)->where('id', '!=', $request->id)->first();
+        $existing = Employee::where('email', $request->email)->where('slug', '!=', $request->slug)->first();
 
         if ($existing) {
 
             return redirect()->back()->with('error', "Email already exists")->withInput();
         }
 
-        $employee = Employee::find($request->id);
+        $employee = Employee::where('slug',$request->slug)->first();
         $employee->full_name = $request->full_name;
         $employee->email = $request->email;
         $employee->phone = $request->phone;
@@ -129,7 +133,7 @@ class EmployeeController extends Controller
 
         if ($employee->save()) {
 
-            return redirect('employees')->with('success', "User updated successfully");
+            return redirect('employees')->with('success', "Employee updated successfully");
         } else {
 
             return redirect('edit/emp')->with('error', "Something went wrong");
@@ -138,8 +142,9 @@ class EmployeeController extends Controller
 
 
 
-    public function deleteEmp($id){
-        $user = Employee::find($id);
+    public function deleteEmp($slug)
+    {
+        $user = Employee::where('slug',$slug)->first();
 
         $user->email .= "-removed-" . $user->id;
 

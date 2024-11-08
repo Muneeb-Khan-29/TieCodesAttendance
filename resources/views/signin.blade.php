@@ -29,6 +29,24 @@
 </head>
 <!--end::Head-->
 <!--begin::Body-->
+<style>
+.svg-container{
+    filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.5)); /* Drop shadow for 3D effect */
+    transform: rotate(10deg); /* Optional: Adds slight rotation for a 3D feel */
+}
+.three-d-text {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fcaf17;
+    text-shadow: 
+        1px 1px 0px #000,
+        2px 2px 0px #555, 
+        3px 3px 0px #333, 
+        4px 4px 0px rgba(0, 0, 0, 0.7);
+    
+    transform: translateZ(10px);
+}
+</style>
 
 <body id="kt_body"
     class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
@@ -37,23 +55,26 @@
         <!--begin::Login-->
         <div class="login login-3 login-signin-on d-flex flex-row-fluid " id="">
             <div class="d-flex flex-center bgi-size-cover bgi-no-repeat bg-dark flex-row-fluid"
-                style="background-image: url(assets/media/bg/bg-2.jpg);">
+                style="background-image: url(assets/media/bg/yellow_background.jpg);">
                 <div class="login-form text-center text-white p-7 position-relative overflow-hidden">
                     <!--begin::Login Header-->
                     <div class="d-flex flex-center mb-15">
                         <a href="#">
-                            <img src="assets/media/logos/logo-letter-9.png" class="max-h-100px" alt="" />
+                            <div class="svg-container">
+                                <img src="{{ asset('assets/media/logos/sm-logo.svg') }}" height="250" style=""
+                                    alt="" />
+                            </div>
                         </a>
                     </div>
                     <!--end::Login Header-->
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
-                        <div class="m-10">
-                            <h1>Tie Codes</h1>
+                        <div class="m-5">
+                            <h1 class="three-d-text">Tie Codes</h1>
                         </div>
-                        <div class="mb-20">
-                            <h3>Sign In To Admin</h3>
-                            <p class="opacity-60 font-weight-bold">Enter your details to login to your account:</p>
+                        <div class="">
+                            {{-- <h3>Sign In To Admin</h3> --}}
+                            <p class="opacity-60 text-dark font-weight-bold">Enter your details to login to your account:</p>
                         </div>
                         <form id="myForm" class="form" action="{{ url('signin') }}" method="POST">
                             @csrf
@@ -69,7 +90,7 @@
                             </div>
                             <div class="form-group text-center mt-10">
                                 <button id="formSubmitButton" save-button="true"
-                                    class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3">Sign
+                                    class="btn btn-pill btn-outline-dark  font-weight-bold opacity-90 px-15 py-3">Sign
                                     In</button>
                             </div>
                         </form>
@@ -159,10 +180,8 @@
                 $(this).attr('save-button', 'false');
             });
         });
-
-
     </script>
-    <script>    
+    <script>
         $(document).ready(function() {
             $('form').on("submit", function(e) {
                 $('#kt_login_signin_submit').attr('disabled', true);

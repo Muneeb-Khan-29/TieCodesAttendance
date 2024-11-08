@@ -4,6 +4,7 @@ use App\Http\Controllers\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +55,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('out/{id}', [AttendanceController::class, 'out']);
     Route::get('wfh/{id}', [AttendanceController::class, 'wfh']);
     Route::get('leave/{id}', [AttendanceController::class, 'leave']);
+
+
+    //Attendance History
+    Route::get('attendance/history', [HistoryController::class, 'index']);
 
 
     //Logout

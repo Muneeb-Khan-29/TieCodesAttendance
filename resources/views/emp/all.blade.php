@@ -1,11 +1,7 @@
 @include('include.header')
-<!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
-        <!--begin::Container-->
         <div class="container">
-            <!--begin::Dashboard-->
             <div class="card card-custom gutter-b ">
                 @if (session('success'))
                     <div class="alert m-2 text-light" style="background-color: #fcaf17">
@@ -26,7 +22,6 @@
                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                     <div class="card-title">
                         <h3 class="card-label">
-                            {{-- <span class="d-block text-dark pt-2 font-size-sm">Total vehicles types</span> --}}
                         </h3>
                     </div>
                     <div class="card-toolbar">
@@ -52,13 +47,9 @@
                     </table>
                 </div>
             </div>
-            <!--end::Dashboard-->
         </div>
-        <!--end::Container-->
     </div>
-    <!--end::Entry-->
 </div>
-<!--end::Content-->
 
 
 
@@ -141,10 +132,10 @@
                 },
                 {
                     data: 'joining_date',
-                    title: 'Joing Date'
+                    title: 'Joining Date'
                 },
                 {
-                    data: 'id',
+                    data: 'slug',
                     title: 'action ',
                     render: function(data, type, row) {
                         let html = '';
@@ -160,7 +151,7 @@
                                 </svg>
                             </span>
                         </a>`;
-                        html += `<button class="btn btn-clean btn-icon delete" title="Delete" user-id="${row.id}" data-toggle="modal" data-target="#deleteModal">
+                        html += `<button class="btn btn-clean btn-icon delete" title="Delete" user-id="${row.slug}" data-toggle="modal" data-target="#deleteModal">
                             <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Trash.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24"/>

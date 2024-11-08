@@ -1,11 +1,7 @@
 @include('include.header')
-<!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
-        <!--begin::Container-->
         <div class="container">
-            <!--begin::Dashboard-->
 
             <div class="p-10">
                 @if (session('success'))
@@ -23,9 +19,6 @@
                             <span aria-hidden="true">&times;</span>
                     </div>
                 @endif
-                <!--begin::Dashboard-->
-                <!--begin::Example-->
-                <!--begin::Card-->
                 <div class="card card-custom">
                     <div class="card-header">
                         <div class="card-title">
@@ -40,12 +33,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <!--begin::Table-->
                         <div>
                             <form action="{{ url('update/emp') }}" enctype="multipart/form-data" id="myForm"
                                 method="POST">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                <input type="hidden" name="slug" value="{{ $user->slug }}">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -125,27 +117,17 @@
                             </form>
                         </div>
                         <div class="card-footer">
-                            {{-- <button type="submit" form="form" class="btn text-light" style="background-color: #3699FF !important;">Submit</button> --}}
                             <button type="submit" form="form" id="formSubmitButton"
                                 class="btn text-light"style="background-color: #08a89d;"
                                 save-button="true">Save</button>
                             <button type="reset" form="myForm" class="ml-3 btn btn-secondary">Reset</button>
                         </div>
-                        <!--end::Table-->
                     </div>
                 </div>
-                <!--end::Card-->
-                <!--end::Example-->
-                <!--end::Dashboard-->
             </div>
-
-            <!--end::Dashboard-->
         </div>
-        <!--end::Container-->
     </div>
-    <!--end::Entry-->
 </div>
-<!--end::Content-->
 @include('include.footer')
 <script>
     $(document).ready(function() {
@@ -155,7 +137,7 @@
     $(document).ready(function() {
         $('#formSubmitButton').on('click', function(event) {
             $(this).attr('save-button', 'false');
-            $(this).prop('disabled', true); // Disable the button
+            $(this).prop('disabled', true);
 
             $('#myForm').submit();
         });
@@ -165,17 +147,13 @@
 
 
     var KTProfile = function() {
-        // Elements
         var avatar;
         var offcanvas;
 
-        // Private functions
         var _initAside = function() {
-            // Mobile offcanvas for mobile mode
             offcanvas = new KTOffcanvas('kt_profile_aside', {
                 overlay: true,
                 baseClass: 'offcanvas-mobile',
-                //closeBy: 'kt_user_profile_aside_close',
                 toggleBy: 'kt_subheader_mobile_toggle'
             });
         }
@@ -185,7 +163,6 @@
         }
 
         return {
-            // public functions
             init: function() {
                 _initAside();
                 _initForm();
