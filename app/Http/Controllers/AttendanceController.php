@@ -24,7 +24,6 @@ class AttendanceController extends Controller
 
             return DataTables::of($data)->make(true);
         }
-
         return view('attendance.index');
     }
 
