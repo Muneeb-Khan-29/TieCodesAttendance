@@ -28,7 +28,6 @@ class AttendanceController extends Controller
         return view('attendance.index');
     }
 
-
     public function inn($id)
     {
         $pakistanTime = Carbon::now()->setTimezone('Asia/Karachi')->format('h:i A');
