@@ -90,9 +90,17 @@
                             </div>
                             <div class="form-group text-center mt-10">
                                 <button id="formSubmitButton" save-button="true"
-                                    class="btn btn-pill btn-outline-dark  font-weight-bold opacity-90 px-15 py-3">Sign
+                                    class="btn btn-pill btn-outline-dark  font-weight-bold opacity-90 px-15 py-3">Log
                                     In</button>
                             </div>
+                            <div
+									class="form-group text-center" >
+									<div class="my-3 mr-2">
+										<span class="text-dark mr-2">Don't have an account?</span>
+										<a href="{{ url('signup/page') }}" class="font-weight-bold">Signup</a>
+									</div>
+									
+								</div>
                         </form>
                     </div>
                     <!--end::Login Sign in form-->

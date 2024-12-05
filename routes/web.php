@@ -22,6 +22,8 @@ Route::get('/', function () {
     return view('signin');
 });
 Route::post('signin', [UserController::class, 'login']);
+Route::get('signup/page', [UserController::class, 'signupPage']);
+Route::get('/tiktactoe', [UserController::class, 'tiktactoe']);
 
 Route::group(['middleware' => 'admin'], function () {
 
@@ -62,5 +64,5 @@ Route::group(['middleware' => 'admin'], function () {
 
 
     //Logout
-    Route::get('/logout',[UserController::class, 'logout']);
+    Route::get('/logout', [UserController::class, 'logout']);
 });

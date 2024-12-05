@@ -30,6 +30,16 @@ class UserController extends Controller
     }
 
 
+    public function tiktactoe(){
+        return view('loading');
+    }
+
+
+    public function signupPage(){
+        return view('signup');
+    }
+
+
     public function dashboard()
     {
         return view('dashboard');
