@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -58,7 +58,7 @@ class User extends Authenticatable
     public function generateUniqueString($column, $table)
     {
         do {
-            $uniqueString = $this->generateRandomString(40);
+            $uniqueString = $this->generateRandomString(60);
         } while (DB::table($table)->where($column, $uniqueString)->exists());
 
         return $uniqueString;

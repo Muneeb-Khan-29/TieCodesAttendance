@@ -25,7 +25,7 @@
                             <h3 class="card-label">Update Employee</h3>
                         </div>
                         <div class="card-title card-toolbar">
-                            <a href="{{ url('empoyees') }}" class="btn btn-secondary text-sm">
+                            <a href="{{ url('employees') }}" class="btn btn-secondary text-sm">
                                 <span class="">
                                     <img src="{{ asset('assets/media/svg/icons/Communication/Reply.svg') }}" />
                                     back</span>

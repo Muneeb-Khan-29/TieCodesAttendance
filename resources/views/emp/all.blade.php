@@ -25,7 +25,8 @@
                         </h3>
                     </div>
                     <div class="card-toolbar">
-                        <a href="{{ url('create/emp') }}" class="btn text-light font-weight-bolder" style="background-color: #fcaf17;">
+                        <a href="{{ url('create/emp') }}" class="btn text-light font-weight-bolder"
+                            style="background-color: #fcaf17;">
                             <span class="svg-icon svg-icon-light svg-icon-md text-light">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -66,8 +67,7 @@
                 <p>Do You Want To Delete This Administration User</p>
             </div>
             <div class="modal-footer">
-                <a type="button" class="btn text-light" style="background-color: #fcaf17;"
-                    id="delete-user">Yes</a>
+                <a type="button" class="btn text-light" style="background-color: #fcaf17;" id="delete-user">Yes</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -129,6 +129,22 @@
                 {
                     data: 'address',
                     title: 'Address '
+                },
+                {
+                    data: 'dob',
+                    title: 'Date of Birth',
+                    render: function(data) {
+                        // Create a new Date object from the 'dob' string
+                        var date = new Date(data);
+
+                        // Format the date to 'dd MMM' (e.g., '08 Aug')
+                        var options = {
+                            day: '2-digit',
+                            month: 'short'
+                        };
+                        return date.toLocaleDateString('en-GB',
+                        options); // Use 'en-GB' for a dd MMM format
+                    }
                 },
                 {
                     data: 'joining_date',

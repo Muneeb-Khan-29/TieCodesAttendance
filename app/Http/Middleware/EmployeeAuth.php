@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class EmployeeAuth
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated and has a 'superadmin' role
-        if (Auth::check() && Auth::user()->type == 'superadmin') {
-            return $next($request);  // Allow the request to proceed
+        if (Auth::check() && Auth::user()->type == 'employee') {
+            return $next($request);
         }
-
-        // If the user is not a superadmin, redirect to the home page
         return redirect('/');
     }
 }

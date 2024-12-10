@@ -7,16 +7,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('signin');
@@ -24,9 +14,9 @@ Route::get('/', function () {
 Route::post('signin', [UserController::class, 'login']);
 Route::get('signup/page', [UserController::class, 'signupPage']);
 Route::get('/tiktactoe', [UserController::class, 'tiktactoe']);
+Route::post('/register/employee', [EmployeeController::class, 'register']);
 
-Route::group(['middleware' => 'admin'], function () {
-
+Route::group(['middleware' => 'admin'],function () {
     //DashBoard
     Route::get('dashboard', [UserController::class, 'dashboard']);
 
@@ -61,8 +51,11 @@ Route::group(['middleware' => 'admin'], function () {
 
     //Attendance History
     Route::get('attendance/history', [HistoryController::class, 'index']);
-
-
-    //Logout
-    Route::get('/logout', [UserController::class, 'logout']);
 });
+
+Route::group(['middleware' => 'employee'], function () {
+    Route::get('home', [UserController::class, 'dashboard']);
+});
+
+//Logout
+Route::get('/logout', [UserController::class, 'logout']);

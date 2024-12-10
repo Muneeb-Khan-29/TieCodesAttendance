@@ -20,8 +20,7 @@ class AdminSeeder extends Seeder
         $admin = User::where('type', 'superadmin')->first();
         if ($admin == null) {
             $user = new User();
-            $user->first_name = 'Super';
-            $user->last_name = 'admin';
+            $user->full_name = 'Super';
             $user->email = 'admin@tiecodes.com';
             $user->type = 'superadmin';
             $user->password = Hash::make('password');
