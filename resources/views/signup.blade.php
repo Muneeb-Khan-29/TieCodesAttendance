@@ -245,7 +245,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         .main-agileinfo {
             width: 35%;
-            margin: 3em auto;
+            margin: 2em auto;
             background: rgba(0, 0, 0, 0.18);
             background-size: cover;
         }
@@ -255,6 +255,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
 
         input[type="text"],
+        input[type="date"],
         input[type="email"],
         input[type="password"] {
             font-size: 0.9em;
@@ -278,7 +279,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         input.email,
         input.text.w3lpass {
-            margin: 2em 0;
+            margin: 1em 0;
         }
 
         .text:focus,
@@ -646,6 +647,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             input[type="text"],
             input[type="email"],
+            input[type="date"],
             input[type="password"] {
                 width: 94%;
             }
@@ -704,6 +706,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             input[type="text"],
             input[type="email"],
+            input[type="date"],
             input[type="password"] {
                 width: 93%;
             }
@@ -769,6 +772,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             input[type="text"],
             input[type="email"],
+            input[type="date"],
             input[type="password"] {
                 width: 91%;
             }
@@ -849,6 +853,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             input[type="text"],
             input[type="email"],
+            input[type="date"],
             input[type="password"] {
                 width: 89.5%;
                 font-size: 0.85em;
@@ -888,36 +893,205 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             }
         }
     </style>
+    <style>
+        .panel {
+            margin: 100px auto 40px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .button_outer {
+            background: #fcb116;
+            border-radius: 30px;
+            text-align: center;
+            height: 50px;
+            width: 200px;
+            display: inline-block;
+            transition: .2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn_upload {
+            padding: 17px 30px 12px;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            z-index: 3;
+            white-space: nowrap;
+        }
+
+        .btn_upload input {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 105%;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .file_uploading {
+            width: 100%;
+            height: 10px;
+            margin-top: 20px;
+            background: #ccc;
+        }
+
+        .file_uploading .btn_upload {
+            display: none;
+        }
+
+        .processing_bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            border-radius: 30px;
+            background: #fcb116;
+            transition: 3s;
+        }
+
+        .file_uploading .processing_bar {
+            width: 100%;
+        }
+
+        .success_box {
+            display: none;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        .success_box:before {
+            content: '';
+            display: block;
+            width: 9px;
+            height: 18px;
+            border-bottom: 6px solid #fff;
+            border-right: 6px solid #fff;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            left: 17px;
+            top: 10px;
+        }
+
+        .file_uploaded .success_box {
+            display: inline-block;
+        }
+
+        .file_uploaded {
+            margin-top: 0;
+            width: 50px;
+            background: #fcb116;
+            height: 50px;
+        }
+
+        .uploaded_file_view {
+            max-width: 300px;
+            margin: 40px auto;
+            text-align: center;
+            position: relative;
+            transition: .2s;
+            opacity: 0;
+            border: 2px solid #ddd;
+            padding: 15px;
+        }
+
+        .file_remove {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            background: #aaa;
+            line-height: 30px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            right: -15px;
+            top: -15px;
+        }
+
+        .file_remove:hover {
+            background: #222;
+            transition: .2s;
+        }
+
+        .uploaded_file_view img {
+            max-width: 100%;
+        }
+
+        .uploaded_file_view.show {
+            opacity: 1;
+        }
+
+        .error_msg {
+            text-align: center;
+            color: #f00
+        }
+    </style>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
     <!-- main -->
     <div class="main-w3layouts wrapper">
-        <h1 style="font-size: 25px;">Welcome to the Team! Let's Get You Started.</h1>
+        <h1 style="font-size: 20px;">Welcome to the Team! Let's Get You Started.</h1>
         <div class="main-agileinfo">
             <div class="agileits-top">
-                <form action="#" method="post">
-                    <input class="text" type="text" name="Username" placeholder="Username" required="">
+                <form action="{{ url('register/employee') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="button_outer" style="margin-bottom: 10px;">
+                        <div class="btn_upload">
+                            <input type="file" id="upload_file" name="avatar">
+                            Upload Image
+                        </div>
+                        <div class="processing_bar"></div>
+                        <div class="success_box"></div>
+                    </div>
+                    <input class="text" type="text" name="Username" placeholder="Username" required=""
+                        style="margin-bottom: 10px;">
+                    <input class="text dob" id="dob" type="text" name="dob" placeholder="DOB" required
+                        style="">
+                    <input class="text" id="" type="text" name="designation" placeholder="Designation"
+                        required style="margin-top: 10px;">
+                    <input class="text" id="" type="text" name="address" placeholder="Address" required
+                        style="margin-top: 10px;">
+                    <input class="text" id="" type="text" name="phone" placeholder="Phone" required
+                        style="margin-top: 10px;">
                     <input class="text email" type="email" name="email" placeholder="Email" required="">
                     <input class="text" type="password" name="password" placeholder="Password" required="">
                     <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password"
                         required="">
-                    <div class="wthree-text">
+                    {{-- <div class="wthree-text">
                         <label class="anim">
                             <input type="checkbox" class="checkbox" required="">
                             <span>I Agree To The Terms & Conditions</span>
                         </label>
                         <div class="clear"> </div>
-                    </div>
+                    </div> --}}
                     <input type="submit" value="SIGNUP">
                 </form>
                 <p>Don't have an Account? <a href="{{ url('/') }}"> Login Now!</a></p>
             </div>
         </div>
         <!-- copyright -->
-        <div class="colorlibcopy-agile">
+        {{-- <div class="colorlibcopy-agile">
             <p>© 2024 All rights reserved by <a href="https://tiecodes.com/" target="_blank">Tiecodes</a></p>
-        </div>
+        </div> --}}
         <!-- //copyright -->
         <ul class="colorlib-bubbles">
             <li></li>
@@ -933,6 +1107,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </ul>
     </div>
     <!-- //main -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        flatpickr("#dob", {
+            dateFormat: "Y-m-d", // Customize date format
+            // minDate: "today", // Optional: Disable past dates
+            altInput: true, // Show the selected date in a more readable format
+            altFormat: "F j, Y", // Custom format for the input field
+            theme: "light", // Use the default theme or customize it
+        });
+
+        var btnUpload = $("#upload_file"),
+            btnOuter = $(".button_outer");
+        btnUpload.on("change", function(e) {
+            var ext = btnUpload.val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                $(".error_msg").text("Not an Image...");
+            } else {
+                $(".error_msg").text("");
+                btnOuter.addClass("file_uploading");
+                setTimeout(function() {
+                    btnOuter.addClass("file_uploaded");
+                }, 3000);
+                var uploadedFile = URL.createObjectURL(e.target.files[0]);
+                setTimeout(function() {
+                    $("#uploaded_view").append('<img src="' + uploadedFile + '" />').addClass("show");
+                }, 3500);
+            }
+        });
+        $(".file_remove").on("click", function(e) {
+            $("#uploaded_view").removeClass("show");
+            $("#uploaded_view").find("img").remove();
+            btnOuter.removeClass("file_uploading");
+            btnOuter.removeClass("file_uploaded");
+        });
+    </script>
 </body>
 
 </html>

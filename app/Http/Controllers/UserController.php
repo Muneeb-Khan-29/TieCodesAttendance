@@ -19,23 +19,31 @@ class UserController extends Controller
         if (!$user) {
             return redirect('/')->with('error', 'Email not found.');
         }
-        
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect('dashboard')->with('success', "Signed in");
+            Auth::login($user);
+
+            if ($user->type == 'superadmin') {
+                return redirect('dashboard')->with('success', 'Signed in as Superadmin');
+            }
+
+            return redirect('home')->with('success', 'Signed in as Employee');
         } else {
-            // Authentication failed, return with error message
             return redirect('/')->with('error', 'Invalid credentials.');
         }
     }
 
 
-    public function tiktactoe(){
+
+    public function tiktactoe()
+    {
         return view('loading');
     }
 
 
-    public function signupPage(){
+    public function signupPage()
+    {
         return view('signup');
     }
 
@@ -208,8 +216,15 @@ class UserController extends Controller
 
 
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect('/');
+    }
+
+
+    public function contact()
+    {
+        return view('contact');
     }
 }
